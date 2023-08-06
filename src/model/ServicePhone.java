@@ -28,6 +28,7 @@ public class ServicePhone {
 	}
 	
 	public boolean registryCall(Phone phone, int c, ETypeCall eTypeCall) {
+		
 		return true;
 	}
 	

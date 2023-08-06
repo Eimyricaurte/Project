@@ -50,5 +50,7 @@ public class Phone {
 		this.cellPlan = cellPlan;
 	}
 	
-	//agregar tostring
+	public String toString() {
+		return "Phone [ imei=" + imei + ", number=" + number + ", manufacturing date=" + manufacturingDate + "]";
+	}
 }

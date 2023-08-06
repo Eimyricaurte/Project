@@ -31,5 +31,7 @@ public class CellPlan {
 		this.minutes = minutes;
 	}
 	
-	//agregar tostring
+	public String toString() {
+		return "";
+	}
 }
