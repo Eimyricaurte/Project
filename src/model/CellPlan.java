@@ -16,7 +16,26 @@ public class CellPlan {
 	}
 
 	public String getDescription() {
-		return description;
+		
+		
+		
+		String descriptionPlan = "" ;
+		
+		switch(descriptionPlan) {
+		case "1":
+			descriptionPlan = "Limited plan 30 minutes";
+			break;
+		case "2":
+			descriptionPlan ="Limited plan 50 minutes";
+			break;
+		case "3":
+			descriptionPlan = "Limited plan 70 minutes";
+			
+			default :
+				System.out.println("invalid plan");
+		}
+		 
+		return descriptionPlan;
 	}
 
 	public void setDescription(String description) {
@@ -24,7 +43,28 @@ public class CellPlan {
 	}
 
 	public int getMinutes() {
-		return minutes;
+		CellPlan cellPlan = new CellPlan();
+		int minutesPlan;
+		
+		
+		switch(getDescription()) {
+		case "1":
+			minutesPlan = 30;
+			break;
+			
+		case "2":
+			minutesPlan = 50;
+			break;
+			
+		case "3":
+			minutesPlan = 70;
+			break;
+			
+			default:
+				minutesPlan = 0;
+		}
+			
+		return minutesPlan;
 	}
 
 	public void setMinutes(int minutes) {

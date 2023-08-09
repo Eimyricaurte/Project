@@ -2,42 +2,110 @@ package model;
 
 public class ServicePhone {
 
-	private int PhoneOne;
-	private int PhoneTwo;
-	private int PhoneThree;
+	private Phone phoneOne;
+	private Phone phoneTwo;
+	private Phone phoneThree;
 	
-	private Phone phone;
-	private ETypeCall eTypeCall;
-	public int getPhoneOne() {
-		return PhoneOne;
+	//private Phone phone;
+	//private ETypeCall eTypeCall;
+	public Phone getPhoneOne() {
+		return phoneOne;
 	}
-	public void setPhoneOne(int phoneOne) {
-		PhoneOne = phoneOne;
+	public void setPhoneOne(Phone phoneOne) {
+		Phone phone1 = new Phone();
+		phone1.getImei();
+		
+		this.phoneOne = phoneOne;
 	}
-	public int getPhoneTwo() {
-		return PhoneTwo;
+	public Phone getPhoneTwo() {
+		return phoneTwo;
 	}
-	public void setPhoneTwo(int phoneTwo) {
-		PhoneTwo = phoneTwo;
+	public void setPhoneTwo(Phone phoneTwo) {
+		this.phoneTwo = phoneTwo;
 	}
-	public int getPhoneThree() {
-		return PhoneThree;
+	public Phone getPhoneThree() {
+		return phoneThree;
 	}
-	public void setPhoneThree(int phoneThree) {
-		PhoneThree = phoneThree;
+	public void setPhoneThree(Phone phoneThree) {
+		this.phoneThree = phoneThree;
 	}
 	
-	public boolean registryCall(Phone phone, int c, ETypeCall eTypeCall) {
+	public boolean registryCall(Phone phone,int minuts, ETypeCall eTypeCall) {	
+	
+		int timeCall = 0;
+		int currentMinutes = phone.getCellPlan().getMinutes();
+		
+		int call = 0;
+		
+		int substractMinutes = 0;
+		
+		if(phone.getCellPlan().getMinutes() > 0) {
+			switch(eTypeCall) {
+			case FIXED:
+				call = timeCall*2;
+				if(call >= currentMinutes) {
+					substractMinutes = currentMinutes - call;
+				}else {
+					System.err.println("there are not enough minutes");
+				}
+				break;
+				
+			case INTERNATIONAL:
+
+				call = timeCall*3;
+				
+				if(call >= currentMinutes) {
+					substractMinutes = currentMinutes - call;
+				}else {
+					System.err.println("there are not enough minutes");
+				}
+				break;
+				
+			case MOVIL:
+				
+				if(timeCall >= currentMinutes) {
+					substractMinutes = currentMinutes - timeCall;
+				}else {
+					System.err.println("there are not enough minutes");
+				}				
+				default:
+					System.out.println("invalid Call");
+			}
+		} else {
+			System.out.println("There are no minutes");
+		}
 		
 		return true;
 	}
 	
-	public Phone findPhone(String find) {
-		this.phone= phone;
-		return phone;
+	public Phone findPhone(String imei) {
+		//Phone findImei = new Phone();
+		ServicePhone servicePhone = new ServicePhone();
+		
+		if(getPhoneOne().getImei() == imei) {
+			
+			return getPhoneOne();
+			
+		}else if(getPhoneTwo().getImei() == imei) {
+			return getPhoneTwo();
+		
+		}else if(getPhoneThree().getImei() == imei) {
+			return getPhoneThree();
+					
+		}else {
+			System.err.println("Imei doesn't exist");
+		}
+		
+		return null; 
 	}
 	
 	public int addMinutes(Phone phone) {
-		return 0;
+		Phone minutes = new Phone();
+		int addMinutes;
+		int min = 0;
+		//para sumar los minutos que  ingresa el usuario a los minutos que ya se tenian
+		addMinutes = minutes.getCellPlan().getMinutes() + min;
+		
+		return addMinutes;
 	}
 }

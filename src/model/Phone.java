@@ -1,21 +1,27 @@
 package model;
 import java.time.LocalDate;
+import java.time.chrono.IsoEra;
+
+import presenter.HandlingCalls;
 public class Phone {
 
 	private String imei;
 	private String number;
 	private LocalDate manufacturingDate;
-	public CellPlan cellPlan;
+	
+	private CellPlan cellPlan;
 
 	public Phone() {
 		
 	}
 
-	public Phone(String imei, String number, LocalDate manufacturingDate) {
+	public Phone(String imei, String number, LocalDate manufacturingDate, CellPlan cellPlan) {
 		super();
+
 		this.imei = imei;
 		this.number = number;
 		this.manufacturingDate = manufacturingDate;
+		this.cellPlan = cellPlan;
 	}
 
 	public String getImei() {
@@ -34,7 +40,10 @@ public class Phone {
 		this.number = number;
 	}
 
-	public LocalDate getManufacturingDate() {
+	public LocalDate getManufacturingDate() {	
+		
+		LocalDate manufacturingDate = LocalDate.parse("2022-01-30");
+
 		return manufacturingDate;
 	}
 
@@ -48,6 +57,16 @@ public class Phone {
 
 	public void setCellPlan(CellPlan cellPlan) {
 		this.cellPlan = cellPlan;
+	}
+	public int getAge() {
+		
+		LocalDate currentDate = LocalDate.now();
+	
+		LocalDate manufacturingDate = LocalDate.parse("2022-01-30");
+		
+		int age = manufacturingDate.getYear() - currentDate.getYear(); 
+		
+		return age;
 	}
 	
 	public String toString() {
